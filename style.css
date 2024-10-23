@@ -1,0 +1,434 @@
+:root {
+
+  --slider_width: 450px;
+  --offset: 30px;
+
+  /* Colors */
+  --black: #000000;
+  --header: #1c1c1c;
+  --white: #ffffff;
+  --borders: #f6f6f6;
+  --yellow: #f8df12;
+
+  /* Angle */
+  --angle: 45deg;
+  --angleMin: -45deg;
+}
+
+@font-face {
+    font-family: "DM Sans Regular";
+    src: local("DM Sans Regular"),
+    local('DMSans-Regular'),
+    local('DM Sans-Regular'),
+      url("/DM_Sans/static/DMSans-Regular.ttf") format("ttf");
+  }
+
+@font-face {
+  font-family: "Pacifico Regular";
+  src: local("Pacifico-Regular"),
+  local('Pacifico Regular'),
+    url("/Pacifico/Pacifico-Regular.ttf") format("ttf");
+}
+/**
+  Нормализация блочной модели
+ */
+ *,
+ *::before,
+ *::after {
+   box-sizing: border-box;
+ }
+ 
+ /**
+   Убираем внутренние отступы слева тегам списков,
+   у которых есть атрибут class
+  */
+ :where(ul, ol):where([class]) {
+   padding-left: 0;
+ }
+ 
+ /**
+   Убираем внешние отступы body и двум другим тегам,
+   у которых есть атрибут class
+  */
+ body,
+ :where(blockquote, figure):where([class]) {
+   margin: 0;
+ }
+ 
+ /**
+   Убираем внешние отступы вертикали нужным тегам,
+   у которых есть атрибут class
+  */
+ :where(
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   h6,
+   p,
+   ul,
+   ol,
+   dl
+ ):where([class]) {
+   margin-block: 0;
+ }
+ 
+ :where(dd[class]) {
+   margin-left: 0;
+ }
+ 
+ /**
+   Убираем стандартный маркер маркированному списку,
+   у которого есть атрибут class
+  */
+ :where(ul[class]) {
+   list-style: none;
+ }
+ 
+ /**
+   Упрощаем работу с изображениями
+  */
+ img, video {
+  pointer-events: none;
+   display: block;
+   max-width: 100%;
+ }
+ 
+ /**
+   Наследуем свойства шрифт для полей ввода
+  */
+ input,
+ textarea,
+ select,
+ button {
+   font: inherit;
+ }
+ 
+ html {
+   /**
+     Пригодится в большинстве ситуаций
+     (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+   height: 100%;
+   /**
+     Плавный скролл
+    */
+   scroll-behavior: smooth;
+ }
+
+ button {cursor: pointer;}
+ 
+ body {
+  overflow-x: hidden;
+  padding-top: 127px;
+  font-family: 'DM Sans Regular', sans-serif;
+   /**
+     Пригодится в большинстве ситуаций
+     (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+   min-height: 100%;
+   max-width: 1920px;
+   margin: 0 auto;
+   /**
+     Унифицированный интерлиньяж
+    */
+   line-height: 1.5;
+   background-color: var(--header);
+ }
+ 
+ /**
+   Удаляем все анимации и переходы для людей,
+   которые предпочитают их не использовать
+  */
+ @media (prefers-reduced-motion: reduce) {
+   * {
+     animation-duration: 0.01ms !important;
+     animation-iteration-count: 1 !important;
+     transition-duration: 0.01ms !important;
+     scroll-behavior: auto !important;
+   }
+ }
+
+ h1 {
+  font-size: 40px;
+  color: var(--white);
+ }
+
+ p {
+  font-size: 18px;
+  color: var(--white);
+}
+
+ ul, li {
+  list-style-type: none;
+ }
+
+ header {
+  background-color: var(--header);
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+ li {padding: 3px; border: 3px solid transparent; transition: border .4s ease-in-out;}
+
+ li, a {font-size: 20px; box-sizing: border-box;}
+
+ ul {
+  display: flex; 
+  column-gap: 45px;
+  padding-left: 0;
+}
+
+ nav {
+  display: flex; 
+  align-items: center;
+}
+
+ li a {
+  white-space: nowrap;
+  display: block;
+  font-family: 'DM Sans Regular', sans-serif;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--white);
+ }
+
+ li:hover {
+    border: 3px solid purple;
+ }
+
+ .header_logo {
+  flex-shrink: 0; display: flex; 
+  align-items: center; 
+  position: relative;
+  cursor: pointer;
+}
+ 
+ .header_logo img {display: block;}
+
+.header_logo::after {
+  content: 'New York';
+  position: absolute;
+  white-space: nowrap;
+  top: 0; left: 10vh;
+  font-size: 40px;
+  color: var(--white);
+  opacity: 0;
+  transform: rotateX(0deg) translateX(-100%);
+  transition: transform .7s ease-in-out, opacity 1s ease-in-out;
+}
+
+.header_logo:hover::after {
+    transform: rotateX(360deg) translateX(0%);
+    opacity: 1;
+}
+
+ .york {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0;
+  padding-inline: 5vh;
+  border-bottom: 3px solid var(--borders);
+ }
+
+ .nav_button {
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  position: relative;
+  right: -18px;
+  width: 45px; height: 45px;
+  background-color: var(--yellow);
+  display: none;
+ }
+
+ .line {
+  position: absolute;
+  top: 50%;
+  left: 9px;
+  width: 25px;
+  height: 3px;
+  background-color: var(--header);
+ }
+
+ .line:nth-child(1),
+ .line:nth-child(3) {
+  transition: transform .4s ease-in-out;
+ }
+
+ .line:nth-child(1) {
+  transform: translateY(-10px);
+ }
+
+ .line:nth-child(2) {
+  transition: opacity 0.4s;
+ }
+
+ .line:nth-child(3) {
+  transform: translateY(10px);
+ }
+
+ /* video { max-height: calc(100vh - 127px);} */
+
+
+
+ .video_content {
+  position: relative;
+  max-width: 1920px; 
+ }
+
+ .welcome {
+  position: absolute;
+  top: calc(50% - 127px); left: 20%;
+  text-transform: uppercase;
+  transform: translate(0);
+  font-family: 'Pacifico Regular';
+  background: linear-gradient(45deg, #470b49, gold);
+  background-size: 200% 200%;
+  background-clip: text; -webkit-text-fill-color: transparent;
+  background-color: gold;
+  font-size: 60px; font-weight: bold;
+  opacity: 0;
+  animation: appear 1.2s ease-in-out .3s forwards, shine 1.2s ease 1.2s forwards;
+}
+
+ @keyframes appear {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(10%);
+    opacity: .5;
+  }
+  100% {
+    transform: translateX(10%);
+    opacity: 1;
+  }
+ }
+
+ @keyframes shine {
+  0% {
+    background-position: 0%;
+  }
+  50% {
+    background-position: 35%;
+  }
+  100% {
+    background-position: 100%;
+  }
+ }
+
+ .about_wrapper {
+  width: 930px;
+  overflow: hidden;
+  margin: 0 auto;
+ }
+
+ .about_content {
+  display: flex;
+  column-gap: 30px;
+  width: calc((var(--slider_width) + var(--offset)) * 4);
+  position: relative;
+  transition: transform 1s ease-in-out;
+ }
+
+ .slider_component {
+  background-color: var(--white);
+  padding-top: 20px; padding-bottom: 20px;
+  border-radius: 10px;
+  width: var(--slider_width);
+  height: 530px;
+  padding-inline: 20px;
+ }
+
+ /* Адаптив */
+ @media screen and (max-width: 1450px) {
+  .welcome {left: 10%;}
+ }
+
+ @media screen and (max-width: 1250px) {
+  .welcome {left: -5%;}
+ }
+
+ @media screen and (max-width: 1080px) {
+  .welcome {font-size: 50px;}
+ }
+
+ @media screen and (max-width: 920px) {
+  body {padding-top: 113px;}
+
+  .nav_button {
+    display: block;
+  }
+
+  ul {
+    margin: 0; display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+    position: absolute;
+    top: 0; right: -250.52px;
+    width: 250.52px;
+    padding: 110px 40px 40px 40px;
+    transition: transform .5s ease-in-out;
+    background-color: var(--yellow);
+  }
+
+  .york.active .header_content ul {
+    transform: translateX(-100%);
+  }
+
+  .york.active .header_content .nav_button .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .york.active .header_content .nav_button .line:nth-child(1) {
+    transform: rotateZ(var(--angle));
+  }
+
+  .york.active .header_content .nav_button .line:nth-child(3) {
+    transform: rotateZ(var(--angleMin));
+  }
+
+  .welcome {
+    top: calc(60% - 113px);
+    font-size: 40px;
+  }
+ }
+
+ @media screen and (max-width: 700px) {
+  
+  li a {font-size: 18px;}
+
+  ul {
+    width: 200px;
+    right: -200px;
+    /* padding: 110px 40px 40px 40px; */
+  }
+
+  .welcome {
+    font-size: 35px;
+  }
+ }
+
+ @media screen and (max-width: 650px) {
+    .welcome {font-size: 30px;}
+ }
+
+ @media screen and (max-width: 500px) {
+    li a {font-size: 16px;}
+    ul {
+      width: 165px;
+      right: -165px;
+      padding: 100px 35px 30px 30px;
+    }
+    .york {
+      padding-inline: 2vh;
+    }
+    .nav_button {
+      right: 2px;
+    }
+ }

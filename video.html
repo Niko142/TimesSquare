@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <script src="video.js" defer></script>
+</head>
+<body>
+    <header class="york active">
+        <div class="header_logo">
+            <img src="/img_video/empire.svg "width='100px' height="60px" alt="Logo">
+        </div>
+        <nav class="header_content">
+            <ul>
+                <li><a href="#about">About us</a></li>
+                <li><a href="/video.html">Contacts</a></li>
+                <li><a href="/video.html">News</a></li>
+                <li><a href="/video.html">Blogs</a></li>
+                <li><a href="/video.html">Location</a></li>
+            </ul>
+            <button class="nav_button">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </button>
+        </nav>
+    </header>
+    <div class="video_content">
+        <span class="welcome">Welcome to the Time Square</span>
+        <video muted autoplay loop width="1920px" height="">
+            <source src="/img_video/TimeSquare.mp4" poster="/img_video/TimeSquare.jpg" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'>
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <section class="about" id="about">
+            <div class="about_head"><h1>About us</h1></div>
+            <div class="about_wrapper">
+                <div class="about_content"></div>
+            </div>
+                <button class="prev" data-type="prev">🠔</button>
+                <button class="next" data-type="next">🠖</button>
+        </div>
+    </section>
+</body>
+</html>

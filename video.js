@@ -32,6 +32,14 @@ butt.addEventListener('click', function(){
     header.classList.toggle('active');
 })
 
+function getOffset() {
+    const width = document.documentElement.clientWidth;
+    switch (true) {
+        default: 
+        
+    } 
+}
+
 
 
 //Выводим элементы слайдера
@@ -39,13 +47,22 @@ render(sliderData);
 
 next.addEventListener('click', function() {
     counter += offsetMax;
-    content.style.transform = `translateX(-${counter}px)`;
+    if (counter >= sliderData.length * offsetMax) {
+        content.style.transform = `translateX(0)`;
+        counter = 0;
+    }
+    else {content.style.transform = `translateX(-${counter}px)`;}
     console.log(counter)
 })
 
 prev.addEventListener('click', function() {
     counter -= offsetMax;
-    if(counter > 0) {
+    if (counter <= 0) {
+        content.style.transform = `translateX(${counter * (sliderData.length - 1)}px)`;
+        counter = offsetMax * (sliderData.length - 1);
+    }
+
+    else if(counter > 0) {
         content.style.transform = `translateX(-${(counter)}px)`;
     }
     else {

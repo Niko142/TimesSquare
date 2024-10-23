@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="fontawesome-free-6.6.0-web/css/all.css">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
     <script src="video.js" defer></script>
@@ -37,10 +38,12 @@
     <section class="about" id="about">
             <div class="about_head"><h1>About us</h1></div>
             <div class="about_wrapper">
+                <!-- поменять размер в js -->
                 <div class="about_content"></div>
             </div>
-                <button class="prev" data-type="prev">🠔</button>
-                <button class="next" data-type="next">🠖</button>
+            <div class="button_bar">
+                <button class="prev" data-type="prev"><i class="fa-solid fa-arrow-left"></i></button><button class="next" data-type="next"><i class="fa-solid fa-arrow-right"></i></button>
+            </div>
         </div>
     </section>
 </body>

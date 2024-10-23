@@ -1,6 +1,8 @@
 :root {
 
   --slider_width: 450px;
+  --slider_width_sr: 400px;
+  --slider_width_mini: 350px;
   --offset: 30px;
 
   /* Colors */
@@ -322,15 +324,17 @@
   }
  }
 
+ .about_head h1 {padding-inline-start: 5vh;}
+
  .about_wrapper {
-  width: 930px;
+  width: calc(var(--slider_width)*2 + var(--offset));
   overflow: hidden;
   margin: 0 auto;
  }
 
  .about_content {
   display: flex;
-  column-gap: 30px;
+  column-gap: var(--offset);
   width: calc((var(--slider_width) + var(--offset)) * 4);
   position: relative;
   transition: transform 1s ease-in-out;
@@ -345,6 +349,34 @@
   padding-inline: 20px;
  }
 
+ .button_bar {
+  margin-top: 30px;
+  display: inline-block;
+  position: relative;
+  top: 0; left: calc(50% - (248px/2));
+}
+
+ .prev,
+ .next {
+  border: 0;
+  border-radius: 5px;
+  padding: 15px;
+  background-color: var(--yellow);
+ }
+ 
+ .prev {
+  margin-right: 10rem;
+ }
+
+ .prev:hover,
+ .prev:active,
+ .prev:focus,
+ .next:hover,
+ .next:active,
+ .next:focus {
+  background-color: rgb(255, 196, 0);
+ }
+
  /* Адаптив */
  @media screen and (max-width: 1450px) {
   .welcome {left: 10%;}
@@ -355,10 +387,30 @@
  }
 
  @media screen and (max-width: 1080px) {
+
+  .about_wrapper {
+    width: calc(var(--slider_width_sr)*2 + var(--offset));
+  }
+
+  .about_content {
+    width: calc((var(--slider_width_sr) + var(--offset)) * 4);
+  }
+  
+  .slider_component {
+    width: var(--slider_width_sr);
+  }
+
   .welcome {font-size: 50px;}
  }
 
  @media screen and (max-width: 920px) {
+
+  .slider_component span {
+    font-size: 15px;
+  }
+
+  .slider_component {max-height: 505px;}
+
   body {padding-top: 113px;}
 
   .nav_button {
@@ -397,6 +449,22 @@
     top: calc(60% - 113px);
     font-size: 40px;
   }
+ }
+ 
+ @media screen and (max-width: 890px) {
+
+  .about_wrapper {
+    width: calc(var(--slider_width_mini)*2 + var(--offset));
+  }
+
+  .about_content {
+    width: calc((var(--slider_width_mini) + var(--offset)) * 4);
+  }
+  
+  .slider_component {
+    width: var(--slider_width_mini);
+  }
+
  }
 
  @media screen and (max-width: 700px) {

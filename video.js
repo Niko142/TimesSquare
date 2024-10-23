@@ -5,7 +5,7 @@ const content = document.querySelector('.about_content');
 const prev = document.querySelector('button.prev');
 const next = document.querySelector('button.next');
 let counter = 0;
-const offsetMax = 480;
+let offsetMax = 0;
 
 const sliderData = [
     {title: 'Rockefeller Center', image: '/img_video/Roller_Scate.webp', description: `During the holiday season, Rockefeller Center is home to the city’s ginormous Christmas tree and the ice skating rink placed perfectly below it. We know most people go here to don their winter skates, which is acceptable by any means. But when it’s not in season, there’s also another option: indoor roller skating.`},
@@ -35,18 +35,33 @@ butt.addEventListener('click', function(){
 function getOffset() {
     const width = document.documentElement.clientWidth;
     switch (true) {
+        case width <= 1080 && width > 890:
+            return offsetMax = 430;
+        case width <=890:
+            return offsetMax = 380;
         default: 
-        
+            return offsetMax = 480;
     } 
 }
 
-
+//Сброс для комфортной адаптации
+window.addEventListener('resize', function() {
+    let width = this.document.documentElement.clientWidth;
+    if (width <= 1080 && width >= 1060) {
+        content.style.transform = `translateX(0)`;
+        counter = 0;
+    }
+    else if (width <=780 && width >= 760) {
+        content.style.transform = `translateX(0)`;
+        counter = 0;
+    }
+})
 
 //Выводим элементы слайдера
 render(sliderData);
 
 next.addEventListener('click', function() {
-    counter += offsetMax;
+    counter += getOffset();
     if (counter >= sliderData.length * offsetMax) {
         content.style.transform = `translateX(0)`;
         counter = 0;
@@ -56,8 +71,8 @@ next.addEventListener('click', function() {
 })
 
 prev.addEventListener('click', function() {
-    counter -= offsetMax;
-    if (counter <= 0) {
+    counter -= getOffset();
+    if (counter < 0) {
         content.style.transform = `translateX(${counter * (sliderData.length - 1)}px)`;
         counter = offsetMax * (sliderData.length - 1);
     }

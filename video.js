@@ -23,6 +23,26 @@ const sliderData = [
         It’s also home to the summer movie night series where films are projected on a large screen for free!`},
 ]
 
+//Управление шириной contenta в зависимости от размера экрана и длины массива информации для слайдера
+window.addEventListener('resize', function() {
+    let width = this.document.documentElement.clientWidth;
+    if (width > 880 && width <= 1060) {
+        content.style.width = `${sliderData.length * getOffset()}px`
+    }
+
+    else if (width > 810 && width <= 870) {
+        content.style.width = `${sliderData.length * getOffset()}px`
+    }
+
+    else if (width <= 810) {
+        content.style.width = `${sliderData.length * getOffset()}px`
+    }
+
+    else {content.style.width = `1920px`}
+})
+
+content.style.width = `1920px`
+
 //Делаем первоначальное окно неактивным
 header.classList.toggle('active');
 
@@ -35,10 +55,12 @@ butt.addEventListener('click', function(){
 function getOffset() {
     const width = document.documentElement.clientWidth;
     switch (true) {
-        case width <= 1080 && width > 890:
-            return offsetMax = 430;
-        case width <=890:
+        case width <= 1080 && width > 885:
+            return offsetMax = 430; 
+        case width <=885 && width > 810:
             return offsetMax = 380;
+        case width <= 810:
+            return offsetMax = 430;
         default: 
             return offsetMax = 480;
     } 
@@ -51,7 +73,7 @@ window.addEventListener('resize', function() {
         content.style.transform = `translateX(0)`;
         counter = 0;
     }
-    else if (width <=780 && width >= 760) {
+    else if (width <=880 && width >= 860) {
         content.style.transform = `translateX(0)`;
         counter = 0;
     }

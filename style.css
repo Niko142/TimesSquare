@@ -18,18 +18,19 @@
 }
 
 @font-face {
-    font-family: "DM Sans Regular";
-    src: local("DM Sans Regular"),
-    local('DMSans-Regular'),
-    local('DM Sans-Regular'),
-      url("/DM_Sans/static/DMSans-Regular.ttf") format("ttf");
+    font-family: "DMSans";
+    src: url("/DM_Sans/static/DMSans-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
   }
 
 @font-face {
-  font-family: "Pacifico Regular";
-  src: local("Pacifico-Regular"),
-  local('Pacifico Regular'),
-    url("/Pacifico/Pacifico-Regular.ttf") format("ttf");
+  font-family: "Pacifico";
+  src: url("/Pacifico/Pacifico-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
 }
 /**
   Нормализация блочной модели
@@ -124,7 +125,8 @@
  body {
   overflow-x: hidden;
   padding-top: 127px;
-  font-family: 'DM Sans Regular', sans-serif;
+  font-family: 'DMSans', sans-serif;
+  font-weight: 400;
    /**
      Пригодится в большинстве ситуаций
      (когда, например, нужно будет "прижать" футер к низу сайта)
@@ -192,7 +194,8 @@
  li a {
   white-space: nowrap;
   display: block;
-  font-family: 'DM Sans Regular', sans-serif;
+  font-family: 'DMSans', sans-serif;
+  font-weight: 400;
   text-decoration: none;
   text-transform: uppercase;
   color: var(--white);
@@ -231,6 +234,7 @@
  .york {
   display: flex;
   justify-content: space-between;
+  max-width: 1920px;
   align-items: center;
   padding: 25px 0;
   padding-inline: 5vh;
@@ -283,12 +287,12 @@
   top: calc(50% - 127px); left: 20%;
   text-transform: uppercase;
   transform: translate(0);
-  font-family: 'Pacifico Regular';
+  font-family: 'Pacifico';
   background: linear-gradient(45deg, #470b49, gold);
   background-size: 200% 200%;
   background-clip: text; -webkit-text-fill-color: transparent;
   background-color: gold;
-  font-size: 60px; font-weight: bold;
+  font-size: 60px; font-weight: 400;
   opacity: 0;
   animation: appear 1.2s ease-in-out .3s forwards, shine 1.2s ease 1.2s forwards;
 }
@@ -388,9 +392,9 @@
     width: calc(var(--slider_width_sr)*2 + var(--offset));
   }
 
-  .about_content {
-    /* width: calc((var(--slider_width_sr) + var(--offset)) * 4); */
-  }
+  /* .about_content {
+    width: calc((var(--slider_width_sr) + var(--offset)) * 4);
+  } */
   
   .slider_component {
     width: var(--slider_width_sr);
@@ -453,9 +457,9 @@
     width: calc(var(--slider_width_mini)*2 + var(--offset));
   }
 
-  .about_content {
-    /* width: calc((var(--slider_width_mini) + var(--offset)) * 4); */
-  }
+  /* .about_content {
+    width: calc((var(--slider_width_mini) + var(--offset)) * 4);
+  } */
   
   .slider_component {
     width: var(--slider_width_mini);
@@ -470,9 +474,9 @@
     width: calc(var(--slider_width_sr));
   }
 
-  .about_content {
-    /* width: calc((var(--slider_width_sr) + var(--offset)) * 4); */
-  }
+  /* .about_content {
+    width: calc((var(--slider_width_sr) + var(--offset)) * 4);
+  } */
   
   .slider_component {
     width: var(--slider_width_sr);
